@@ -14,18 +14,28 @@ dependencies:
   chewie: ^1.14.1
   flutter:
     sdk: flutter
+  syncfusion_flutter_pdfviewer: ^34.1.30
   video_player: ^2.8.6 
+  video_player_win: ^3.2.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
 
 flutter:
-
   uses-material-design: true
   assets:
     - assets/images/
     - assets/videos/CapsulasEmbalador/
     - assets/videos/CapsulasErrores/
     - assets/videos/CapsulasSupervisor/
+    - assets/Documentos/ManualEmbalador.pdf
+    - assets/Documentos/ManualSupervisor.pdf
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/mamutv.png"
+  min_sdk_version: 21

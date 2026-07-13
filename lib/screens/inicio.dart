@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'menu_screen.dart';
+import 'package:flutter/services.dart';
 
 class InicioScreen extends StatelessWidget {
   const InicioScreen({super.key});
@@ -24,107 +25,108 @@ class InicioScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.tonality, color: Colors.black87), // Color del icono del menú, AMARILLO DORADO
             onPressed: () {
-              //modo oscuro + adelante
+              //modo oscuro
             },
           ),
         ],
 
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            const Spacer(),
-            // Logo de la aplicación
-            Padding(padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Image.asset(
-                'assets/images/mamut.png', // logo Mamut
-                fit: BoxFit.contain,
-              ),
-            ),
-
-            SizedBox(
-              width: 250,
-              height: 55,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFD9A542), // Color de fondo del botón, AMARILLO DORADO
-                  foregroundColor: const Color(0xFF1C1C1E), // Color del texto del botón, gris oscuro carbon
-                  elevation: 0,
-                  side: const BorderSide(color: Colors.black12), // Borde del botón, negro
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8), // Bordes redondeados
-                  ),
-                ), 
-                onPressed: (){
-                  // Navegar a la pantalla de menú
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MenuScreen(),
-                    ),
-                  );
-                },
-                child: const Text('Ver Capsulas',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:[
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Image.asset(
+                    'assets/images/mamut.png',
+                    height: MediaQuery.of(context).size.height * 0.35,
+                    fit: BoxFit.contain,
                   ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 15), //espacio entre botones
-            TextButton(
-              onPressed: (){
-                // Acción del botón "Salir"
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Confirmación'),
-                      content: const Text('¿Estás seguro de que deseas salir de la aplicación?'),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(); // Cierra el diálogo
-                          },
-                          child: const Text('Cancelar'),
+                const SizedBox(height: 40,),
+                SizedBox(
+                  width: 250,
+                  height: 55,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFD9A542), // Color del botón, AMARILLO DORADO
+                      foregroundColor: Colors.black87, // Color del texto del botón
+                      elevation: 0,
+                      side: const BorderSide(color: Colors.black87, width: 2), // Bordes negros del botón
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8), // Bordes redondeados
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MenuScreen(),
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(); // Cierra el diálogo
-                            Navigator.of(context).pop(); // Cierra la pantalla de inicio
-                          },
-                          child: const Text('Salir'),
-                        ),
-                      ],
+                      );
+                    },
+                    child: const Text(
+                      'Ver Capsulas',
+                      style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 15),
+                TextButton(
+                  onPressed: (){
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context){
+                        return AlertDialog(
+                          title: const Text('Confirmación'),
+                          content: const Text('¿Desea salir de la aplicación?'),
+                          actions: [
+                            TextButton(
+                              onPressed: (){
+                                Navigator.of(context).pop(); // Cierra el diálogo
+                                SystemNavigator.pop(); // Cierra la aplicación
+                              },
+                              child: const Text('Salir'),
+                            ),
+                          ],
+                        );
+                      }
                     );
                   },
-                );
-              },
-              child: const Text(
-                'Salir',
-                style: TextStyle(
-                  color: Color(0xFFD9A542), // Color del texto del botón, AMARILLO DORADO
-                  fontSize: 16,
+                  child: const Text(
+                    'Salir',
+                    style: TextStyle(
+                      color: Colors.black87, // Color del texto del botón, AMARILLO DORADO
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-
-            const Spacer(),
-            //footer
-            const Padding(
-              padding: EdgeInsets.only(bottom: 20.0),
-              child: Text(
-                '© 2024 Mamut. Todos los derechos reservados.',
-                style: TextStyle(
-                  color: Colors.black38, // Color del texto del footer, blanco con opacidad
-                  fontSize: 14,
+                const SizedBox(height: 40),
+                //footer
+                const Text(
+                  '© 2024 Mamut. Todos los derechos reservados.',
+                  style: TextStyle(
+                    color: Colors.black54, // Color del texto del footer
+                    fontSize: 14,
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        )
-      )
+          ),
+        ),
+      ),
+    ),
+  );
 
-    );
   }
 }

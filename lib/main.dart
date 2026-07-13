@@ -1,7 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'screens/inicio.dart';
+import 'package:video_player_win/video_player_win.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isWindows) {
+    WindowsVideoPlayer.registerWith();
+  }
   runApp(const CapsulasEmbalaje());
 }
 

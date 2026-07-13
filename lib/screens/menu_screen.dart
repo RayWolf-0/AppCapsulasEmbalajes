@@ -1,3 +1,4 @@
+import 'package:capsulas_embalaje/screens/visor_documentos_screen.dart';
 import 'package:flutter/material.dart';
 import 'lista_capsulas_screen.dart';
 
@@ -26,6 +27,10 @@ class MenuScreen extends StatelessWidget {
             _crearBoton(context, 'Supervisor'),
             const SizedBox(height: 20),
             _crearBoton(context, 'Errores'),
+            const SizedBox(height: 20),
+            _crearBoton(context, 'Manual de Embalador'),
+            const SizedBox(height: 20),
+            _crearBoton(context, 'Manual de Supervisor'),
 
           ],
         ),
@@ -33,22 +38,46 @@ class MenuScreen extends StatelessWidget {
     );
   }
 
-  Widget _crearBoton(BuildContext context, String categoria) {
+  Widget _crearBoton(BuildContext context, String titulo) {
     return SizedBox(
-      width: 200,
-      height: 50,
+      width: 250,
+      height: 55,
       child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFD9A542), // Color del botón, AMARILLO DORADO
+          foregroundColor: Colors.black87, // Color del texto del botón
+          elevation: 0,
+          side: const BorderSide(color: Colors.black87, width: 2), // Bordes negros del botón
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8), // Bordes redondeados
+          ),
+        ),
         onPressed: () {
-          // Navegar a la pantalla de lista de cápsulas
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ListaCapsulasScreen(categoria: categoria),),
-          );
+          if (titulo.contains('Manual')){
+            String rutaArchivo = titulo == 'Manual de Embalador' ? 'assets/Documentos/ManualEmbalador.pdf' : 'assets/Documentos/ManualSupervisor.pdf';
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => VisorDocumentosScreen(
+                  rutaPdf: rutaArchivo,
+                  titulo: titulo,
+                ),
+              ),
+            );            
+          } else {
+            Navigator.push(
+              context, 
+              MaterialPageRoute(
+                builder: (context) => ListaCapsulasScreen(categoria: titulo),
+              ),
+            );
+          }
         },
-        child: Text(categoria,
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+        child: Text(titulo,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
       ),
     );
+
   }
 
 }

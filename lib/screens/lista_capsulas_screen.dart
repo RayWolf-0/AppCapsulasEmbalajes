@@ -48,13 +48,14 @@ class ListaCapsulasScreen extends StatelessWidget {
         title: Text('Cápsulas - $categoria'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(5.0),
         child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+          //tamaño recuadros de video
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 220,
             crossAxisSpacing: 16.0,
             mainAxisSpacing: 16.0,
-            childAspectRatio: 0.8, 
+            childAspectRatio: 0.9, 
           ),
           itemCount: videosAmostrar.length,
           itemBuilder: (context, index) {
@@ -81,7 +82,7 @@ class ListaCapsulasScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Center(
-                        child: Icon(Icons.play_arrow, size: 50, color: Color(0xFFD9A542)),
+                        child: Icon(Icons.play_arrow, size: 40, color: Color(0xFFD9A542)),
                       ),
                     ),
                   ),
