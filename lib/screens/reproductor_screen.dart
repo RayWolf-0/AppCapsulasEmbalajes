@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
+import 'package:chewie/chewie.dart';
 
 class ReproductorScreen extends StatefulWidget {
   final String rutaVideo;
+  final String tituloVideo;
 
-  const ReproductorScreen({super.key, required this.rutaVideo});
+  const ReproductorScreen({super.key, required this.rutaVideo, required this.tituloVideo});
 
   @override
   State<ReproductorScreen> createState() => _ReproductorScreenState();
@@ -13,88 +14,68 @@ class ReproductorScreen extends StatefulWidget {
 }
 
 class _ReproductorScreenState extends State<ReproductorScreen> {
-  late VideoPlayerController _controller;
-  bool _estaInicializado = false;
+  late VideoPlayerController _videoPlayerController;
+  ChewieController? _chewieController;
+  bool _huboError = false;
+  String _mensajeError = '';
 
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-    ]);
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-
-    _controller = VideoPlayerController.asset(widget.rutaVideo)
-    ..initialize().then((_) {
-      setState(() {
-        _estaInicializado = true;
-
+    _videoPlayerController = VideoPlayerController.asset(widget.rutaVideo);
+    _videoPlayerController.initialize().then((_){
+      setState((){
+        _chewieController = ChewieController(
+          videoPlayerController: _videoPlayerController,
+          autoPlay: true,
+          looping: false,
+          materialProgressColors: ChewieProgressColors(
+            playedColor: const Color.fromARGB(255, 240, 230, 185), // Color de la barra de progreso
+            handleColor: const Color.fromARGB(255, 241, 189, 159), // Color del control de la barra de progreso
+            bufferedColor: const Color.fromARGB(255, 200, 200, 200), // Color de la barra de buffer
+          ),
+        );
       });
-      _controller.play();
+    }).catchError((error){
+      setState((){
+        _huboError = true;
+        _mensajeError = 'Error al cargar el video: \n$error';
+      });
     });
   }
 
   @override
   void dispose() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    _controller.dispose();
+    _videoPlayerController.dispose();
+    _chewieController?.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context){
     return Scaffold(
       backgroundColor: const Color(0xFF1C1C1E), // Color de fondo de la pantalla, gris oscuro carbon
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          //Video Player
-          _estaInicializado ? AspectRatio(
-            aspectRatio: _controller.value.aspectRatio,
-            child: VideoPlayer(_controller),
-          )
-          : const CircularProgressIndicator(
-            color: Color(0xFFD9A542), // Color del indicador de carga, AMARILLO DORADO
+      appBar: AppBar(
+        title: Text(widget.tituloVideo),
+        backgroundColor: const Color(0xFF1C1C1E), // Color de la barra de navegación, gris oscuro carbon
+        foregroundColor: const Color(0xFFD9A542), // Color del texto y los iconos, AMARILLO DORADO
+      ),
+      body: Center(
+        child: _huboError
+        ? Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            _mensajeError,
+            style: const TextStyle(color: Colors.red, fontSize: 16),
+            textAlign: TextAlign.center,
           ),
-          //Controles de reproducción
-          if (_estaInicializado)
-            GestureDetector(
-              onTap: (){
-                setState((){
-                  _controller.value.isPlaying ? _controller.pause() : _controller.play();
-                });
-              },
-              child: Container(
-                color: Colors.transparent, //esta capa detecta el toque para reproducir/pausar el video
-                child: Center(
-                  child: Icon(
-                    _controller.value.isPlaying
-                    ? Icons.pause 
-                    : Icons.play_arrow, color: const Color(0xFFD9A542).withValues(alpha: 0.8),
-                    size: 80.0, // Color del icono de reproducción/pausa, AMARILLO DORADO
-                  ),
-
-                ),
-              ),
-            ),
-
-          Positioned(
-            top: 20,
-            left: 20,
-            child: IconButton(
-              icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 30.0),
-              onPressed: (){
-                Navigator.pop(context);
-              },// Color del icono de retroceso, blanco
-            )
-          )
-
-        ],
+        )
+        : _chewieController != null && _chewieController!.videoPlayerController.value.isInitialized
+          ? Chewie(controller: _chewieController!)
+          : const CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFD9A542)), // Color del indicador de carga, AMARILLO DORADO
+          ),
       )
     );
   }

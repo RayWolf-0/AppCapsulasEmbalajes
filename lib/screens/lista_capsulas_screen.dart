@@ -6,38 +6,39 @@ class ListaCapsulasScreen extends StatelessWidget {
 
   const ListaCapsulasScreen({super.key, required this.categoria});
 
-  Map<String, List<String>> _obtenerVideos() {
-    return {
+  //Lista 
+  List<Map<String, String>> _obtenerVideos() {
+    final Map<String, List<Map<String, String>>> baseDeDatos = {
       'Embalador': [
-        'assets/videos/CapsulasEmbalador/Cerraroe.mp4',
-        'assets/videos/CapsulasEmbalador/ComoSolicitarUnaOe.mp4',
-        'assets/videos/CapsulasEmbalador/QuitarPausa.mp4',
-        'assets/videos/CapsulasEmbalador/SolicitarPausa.mp4',
-        'assets/videos/CapsulasEmbalador/SolicitudDeCierre.mp4',
-        'assets/videos/CapsulasEmbalador/TableroResumen.mp4',
-        'assets/videos/CapsulasEmbalador/UsoDeStop.mp4',
+        {'titulo': 'Cerrar OE', 'ruta': 'assets/videos/CapsulasEmbalador/Cerraroe.mp4'},
+        {'titulo': 'Solicitar OE', 'ruta': 'assets/videos/CapsulasEmbalador/ComoSolicitarUnaOe.mp4'},
+        {'titulo': 'Quitar Pausa', 'ruta': 'assets/videos/CapsulasEmbalador/QuitarPausa.mp4'},
+        {'titulo': 'Solicitar Pausa', 'ruta': 'assets/videos/CapsulasEmbalador/SolicitarPausa.mp4'},
+        {'titulo': 'Solicitud Cierre', 'ruta': 'assets/videos/CapsulasEmbalador/SolicitudDeCierre.mp4'},
+        {'titulo': 'Tablero Resumen', 'ruta': 'assets/videos/CapsulasEmbalador/TableroResumen.mp4'},
+        {'titulo': 'Uso de Stop', 'ruta': 'assets/videos/CapsulasEmbalador/UsoDeStop.mp4'},
       ],
       'Supervisor': [
-        'assets/videos/CapsulasSupervisor/AsignarUnaOe.mp4',
-        'assets/videos/CapsulasSupervisor/AsignarUnMeson.mp4',
-        'assets/videos/CapsulasSupervisor/clonaroe.mp4',
-        'assets/videos/CapsulasSupervisor/DarUnaPausa.mp4',
-        'assets/videos/CapsulasSupervisor/OeConSolicitudDeCierre.mp4',
-        'assets/videos/CapsulasSupervisor/VerMonitorOe.mp4',
+        {'titulo': 'Asignar OE', 'ruta': 'assets/videos/CapsulasSupervisor/AsignarUnaOe.mp4'},
+        {'titulo': 'Asignar Mesón', 'ruta': 'assets/videos/CapsulasSupervisor/AsignarUnMeson.mp4'},
+        {'titulo': 'Clonar OE', 'ruta': 'assets/videos/CapsulasSupervisor/clonaroe.mp4'},
+        {'titulo': 'Dar una Pausa', 'ruta': 'assets/videos/CapsulasSupervisor/DarUnaPausa.mp4'},
+        {'titulo': 'Coe con Solicitud de Cierre', 'ruta': 'assets/videos/CapsulasSupervisor/OeConSolicitudDeCierre.mp4'},
+        {'titulo': 'Ver Monitor OE', 'ruta': 'assets/videos/CapsulasSupervisor/VerMonitor.mp4'},
 
       ],
       'Errores': [
-        'assets/videos/CapsulasErrores/Error1.NoSePuedeVerUnaOeAsignada.mp4',
-        'assets/videos/CapsulasErrores/Error2.NoSePuedeCerrarUnaOe.mp4',
-        'assets/videos/CapsulasErrores/Error3.SinMesonAlSolicitarOe.mp4',
+        {'titulo': 'No ver OE asignada', 'ruta': 'assets/videos/CapsulasErrores/Error1.NoSePuedeVerUnaOeAsignada.mp4'},
+        {'titulo': 'No cerrar OE', 'ruta': 'assets/videos/CapsulasErrores/Error2.NoSePuedeCerrarUnaOe.mp4'},
+        {'titulo': 'Sin Mesón al solicitar', 'ruta': 'assets/videos/CapsulasErrores/Error3.SinMesonAlSolicitarOe.mp4'},
       ],
     };
+    return baseDeDatos[categoria] ?? [];
   }
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, List<String>> baseDeDatos = _obtenerVideos();
-    final List<String> videosAmostrar = baseDeDatos[categoria] ?? [];
+    final List<Map<String, String>> videosAmostrar = _obtenerVideos();
 
     return Scaffold(
       backgroundColor: const Color(0xFFF0F0F0),
@@ -53,13 +54,11 @@ class ListaCapsulasScreen extends StatelessWidget {
             crossAxisCount: 2,
             crossAxisSpacing: 16.0,
             mainAxisSpacing: 16.0,
+            childAspectRatio: 0.8, 
           ),
-          // cantidad exacta de videos a mostrar en la grilla
-          itemCount: videosAmostrar.length, 
+          itemCount: videosAmostrar.length,
           itemBuilder: (context, index) {
-            
-            // ruta exacta del video
-            final rutaExacta = videosAmostrar[index];
+            final video = videosAmostrar[index];
 
             return GestureDetector(
               onTap: () {
@@ -67,23 +66,35 @@ class ListaCapsulasScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => ReproductorScreen(
-                      rutaVideo: rutaExacta, // ruta
+                      rutaVideo: video['ruta']!,
+                      tituloVideo: video['titulo']!, // titulos
                     ),
                   ),
                 );
               },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFF1C1C1E),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Center(
-                  child: Icon(
-                    Icons.play_arrow,
-                    size: 50,
-                    color: Color(0xFFD9A542),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1C1C1E),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Center(
+                        child: Icon(Icons.play_arrow, size: 50, color: Color(0xFFD9A542)),
+                      ),
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 8),
+                  // mostrar el titulo del video
+                  Text(
+                    video['titulo']!,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
               ),
             );
           },
