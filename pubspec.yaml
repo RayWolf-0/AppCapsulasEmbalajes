@@ -11,6 +11,7 @@ environment:
   sdk: ^3.12.2
 
 dependencies:
+  chewie: ^1.14.1
   flutter:
     sdk: flutter
   video_player: ^2.8.6 
@@ -25,4 +26,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-    - assets/videos/
+    - assets/videos/CapsulasEmbalador/
+    - assets/videos/CapsulasErrores/
+    - assets/videos/CapsulasSupervisor/

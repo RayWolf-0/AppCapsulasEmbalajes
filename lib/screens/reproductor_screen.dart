@@ -75,7 +75,7 @@ class _ReproductorScreenState extends State<ReproductorScreen> {
                   child: Icon(
                     _controller.value.isPlaying
                     ? Icons.pause 
-                    : Icons.play_arrow, color: const Color(0xFFD9A542).withOpacity(0.8),
+                    : Icons.play_arrow, color: const Color(0xFFD9A542).withValues(alpha: 0.8),
                     size: 80.0, // Color del icono de reproducción/pausa, AMARILLO DORADO
                   ),
 
