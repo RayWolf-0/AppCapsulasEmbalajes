@@ -31,6 +31,7 @@ flutter:
     - assets/videos/CapsulasEmbalador/
     - assets/videos/CapsulasErrores/
     - assets/videos/CapsulasSupervisor/
+    - assets/videos/CapsulasEmbaladorPrivilegios/
     - assets/Documentos/ManualEmbalador.pdf
     - assets/Documentos/ManualSupervisor.pdf
 

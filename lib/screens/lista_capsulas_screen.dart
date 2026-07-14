@@ -10,13 +10,15 @@ class ListaCapsulasScreen extends StatelessWidget {
   List<Map<String, String>> _obtenerVideos() {
     final Map<String, List<Map<String, String>>> baseDeDatos = {
       'Embalador': [
-        {'titulo': 'Cerrar OE', 'ruta': 'assets/videos/CapsulasEmbalador/Cerraroe.mp4'},
+        {'titulo': 'Trabajar en la OE', 'ruta': 'assets/videos/CapsulasEmbalador/TrabajarenunaOE.mp4'},
         {'titulo': 'Solicitar OE', 'ruta': 'assets/videos/CapsulasEmbalador/ComoSolicitarUnaOe.mp4'},
-        {'titulo': 'Quitar Pausa', 'ruta': 'assets/videos/CapsulasEmbalador/QuitarPausa.mp4'},
-        {'titulo': 'Solicitar Pausa', 'ruta': 'assets/videos/CapsulasEmbalador/SolicitarPausa.mp4'},
-        {'titulo': 'Solicitud Cierre', 'ruta': 'assets/videos/CapsulasEmbalador/SolicitudDeCierre.mp4'},
+        {'titulo': 'Quitar Pausa', 'ruta': 'assets/videos/CapsulasEmbalador/QuitarunaPausa.mp4'},
+        {'titulo': 'Solicitar Pausa', 'ruta': 'assets/videos/CapsulasEmbalador/SolicitarunaPausa.mp4'},
+        {'titulo': 'Solicitud Cierre', 'ruta': 'assets/videos/CapsulasEmbalador/SolicituddeCierre.mp4'},
         {'titulo': 'Tablero Resumen', 'ruta': 'assets/videos/CapsulasEmbalador/TableroResumen.mp4'},
-        {'titulo': 'Uso de Stop', 'ruta': 'assets/videos/CapsulasEmbalador/UsoDeStop.mp4'},
+        {'titulo': 'Tarjeta OE', 'ruta': 'assets/videos/CapsulasEmbalador/TarjetaOE.mp4'},
+        {'titulo': 'Uso de Stop', 'ruta': 'assets/videos/CapsulasEmbalador/Stop.mp4'},
+        {'titulo': 'Guias de Embalaje', 'ruta': 'assets/videos/CapsulasEmbalador/Visualizarguiasembalaje.mp4'},
       ],
       'Supervisor': [
         {'titulo': 'Asignar OE', 'ruta': 'assets/videos/CapsulasSupervisor/AsignarUnaOe.mp4'},
@@ -31,6 +33,11 @@ class ListaCapsulasScreen extends StatelessWidget {
         {'titulo': 'No ver OE asignada', 'ruta': 'assets/videos/CapsulasErrores/Error1.NoSePuedeVerUnaOeAsignada.mp4'},
         {'titulo': 'No cerrar OE', 'ruta': 'assets/videos/CapsulasErrores/Error2.NoSePuedeCerrarUnaOe.mp4'},
         {'titulo': 'Sin Mesón al solicitar', 'ruta': 'assets/videos/CapsulasErrores/Error3.SinMesonAlSolicitarOe.mp4'},
+      ],
+      'Embalador Privilegios': [
+        {'titulo': 'Cerrar una OE', 'ruta': 'assets/videos/CapsulasEmbaladorPrivilegios/Cerraroeconprivi.mp4'},
+        {'titulo': 'Trabajar en la OE', 'ruta': 'assets/videos/CapsulasEmbaladorPrivilegios/TrabajarenlaOeprivi.mp4'},
+        {'titulo': 'Pausar una OE', 'ruta': 'assets/videos/CapsulasEmbaladorPrivilegios/pausaroeconprivi.mp4'},
       ],
     };
     return baseDeDatos[categoria] ?? [];

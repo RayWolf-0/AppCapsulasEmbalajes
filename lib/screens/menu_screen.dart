@@ -28,6 +28,8 @@ class MenuScreen extends StatelessWidget {
             const SizedBox(height: 20),
             _crearBoton(context, 'Errores'),
             const SizedBox(height: 20),
+            _crearBoton(context, 'Embalador Privilegios'),
+            const SizedBox(height: 30),
             _crearBoton(context, 'Manual de Embalador'),
             const SizedBox(height: 20),
             _crearBoton(context, 'Manual de Supervisor'),
