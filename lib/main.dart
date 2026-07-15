@@ -1,4 +1,5 @@
-import 'dart:io';
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb; 
 
 import 'package:flutter/material.dart';
 import 'screens/inicio.dart';
@@ -8,6 +9,8 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows) {
     WindowsVideoPlayer.registerWith();
+  }else{
+    (kIsWeb);
   }
   runApp(const CapsulasEmbalaje());
 }
