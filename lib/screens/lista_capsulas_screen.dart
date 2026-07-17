@@ -26,7 +26,7 @@ class ListaCapsulasScreen extends StatelessWidget {
         {'titulo': 'Clonar OE', 'ruta': 'assets/videos/CapsulasSupervisor/clonaroe.mp4'},
         {'titulo': 'Dar una Pausa', 'ruta': 'assets/videos/CapsulasSupervisor/DarUnaPausa.mp4'},
         {'titulo': 'Coe con Solicitud de Cierre', 'ruta': 'assets/videos/CapsulasSupervisor/OeConSolicitudDeCierre.mp4'},
-        {'titulo': 'Ver Monitor OE', 'ruta': 'assets/videos/CapsulasSupervisor/VerMonitor.mp4'},
+        {'titulo': 'Ver Monitor OE', 'ruta': 'assets/videos/CapsulasSupervisor/VerMonitorOe.mp4'},
 
       ],
       'Errores': [

@@ -1,5 +1,7 @@
 import 'package:capsulas_embalaje/screens/visor_documentos_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'lista_capsulas_screen.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -54,26 +56,29 @@ class MenuScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(8), // Bordes redondeados
           ),
         ),
-        onPressed: () {
+        onPressed: () async {
           if (titulo.contains('Manual')){
             String rutaArchivo = titulo == 'Manual de Embalador' ? 'assets/Documentos/ManualEmbalador.pdf' : 'assets/Documentos/ManualSupervisor.pdf';
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => VisorDocumentosScreen(
-                  rutaPdf: rutaArchivo,
-                  titulo: titulo,
-                ),
-              ),
-            );            
-          } else {
-            Navigator.push(
-              context, 
-              MaterialPageRoute(
-                builder: (context) => ListaCapsulasScreen(categoria: titulo),
-              ),
-            );
-          }
+            if (kIsWeb){
+              final Uri url = Uri.parse(rutaArchivo);
+              if (await canLaunchUrl(url)){  
+              } else{
+                debugPrint('no se pudo abrir el documento');
+              }
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => VisorDocumentosScreen(rutaPdf: rutaArchivo, titulo: titulo),
+                  ),
+                );
+              }
+            } else {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ListaCapsulasScreen(categoria: titulo)),
+              );
+            }
         },
         child: Text(titulo,
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),

@@ -7,10 +7,10 @@ import 'package:video_player_win/video_player_win.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  if (Platform.isWindows) {
+  if (kIsWeb) {
+    //ingresa si es por via web
+  }else if (Platform.isWindows){
     WindowsVideoPlayer.registerWith();
-  }else{
-    (kIsWeb);
   }
   runApp(const CapsulasEmbalaje());
 }
