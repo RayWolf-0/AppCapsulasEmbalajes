@@ -35,7 +35,6 @@ class MenuScreen extends StatelessWidget {
             _crearBoton(context, 'Manual de Embalador'),
             const SizedBox(height: 20),
             _crearBoton(context, 'Manual de Supervisor'),
-
           ],
         ),
       ),
@@ -58,33 +57,36 @@ class MenuScreen extends StatelessWidget {
         ),
         onPressed: () async {
           if (titulo.contains('Manual')){
-            String rutaArchivo = titulo == 'Manual de Embalador' ? 'assets/Documentos/ManualEmbalador.pdf' : 'assets/Documentos/ManualSupervisor.pdf';
-            if (kIsWeb){
-              final Uri url = Uri.parse(rutaArchivo);
-              if (await canLaunchUrl(url)){  
-              } else{
-                debugPrint('no se pudo abrir el documento');
-              }
-              } else {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => VisorDocumentosScreen(rutaPdf: rutaArchivo, titulo: titulo),
-                  ),
-                );
-              }
+            String rutaArchivo = titulo == 'Manual de Embalador' 
+                ? 'assets/Documentos/ManualEmbalador.pdf' 
+                : 'assets/Documentos/ManualSupervisor.pdf';
+            
+            if (kIsWeb) {
+              // web
+              final Uri url = Uri.parse('assets/$rutaArchivo');
+              launchUrl(url); 
             } else {
+              // movil
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ListaCapsulasScreen(categoria: titulo)),
+                MaterialPageRoute(
+                  builder: (context) => VisorDocumentosScreen(rutaPdf: rutaArchivo, titulo: titulo),
+                ),
               );
             }
+          } else {
+            // CÁPSULAS
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ListaCapsulasScreen(categoria: titulo)),
+            );
+          }
         },
-        child: Text(titulo,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+        child: Text(
+          titulo,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
       ),
     );
-
   }
-
 }
