@@ -24,6 +24,7 @@ class CapsulasEmbalaje extends StatelessWidget {
       title: 'Cápsulas Embalaje',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'Roboto',
         scaffoldBackgroundColor: const Color(0xFFF0F0F0), //fondo gris claro
         appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xFF1C1C1E), // Color de la barra de navegación, gris oscuro carbon

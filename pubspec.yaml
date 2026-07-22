@@ -35,6 +35,15 @@ flutter:
     - assets/videos/CapsulasEmbaladorPrivilegios/
     - assets/Documentos/ManualEmbalador.pdf
     - assets/Documentos/ManualSupervisor.pdf
+  fonts: 
+    - family : Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Italic.ttf
+        - asset: assets/fonts/Roboto-Variable.ttf
+    - family: NotoSans
+      fonts: 
+        - asset: assets/fonts/NotoSans-Italic.ttf
+        - asset: assets/fonts/NotoSans-Variable.ttf
 
 flutter_launcher_icons:
   android: "launcher_icon"
