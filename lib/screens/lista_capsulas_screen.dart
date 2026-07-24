@@ -11,7 +11,7 @@ class ListaCapsulasScreen extends StatelessWidget {
     final Map<String, List<Map<String, String>>> baseDeDatos = {
       'Embalador': [
         {'titulo': 'Trabajar en la OE', 'ruta': 'assets/videos/CapsulasEmbalador/Trabajarunaoe.webm'},
-        {'titulo': 'Solicitar OE', 'ruta': 'assets/videos/CapsulasEmbalador/solicitaroe.webm'},
+        {'titulo': 'Solicitar OE', 'ruta': 'assets/videos/CapsulasEmbalador/Solicitaroe.mp4'},
         {'titulo': 'Quitar Pausa', 'ruta': 'assets/videos/CapsulasEmbalador/Quitarpausa.webm'},
         {'titulo': 'Solicitar Pausa', 'ruta': 'assets/videos/CapsulasEmbalador/Solicitarunapausa.webm'},
         {'titulo': 'Solicitud Cierre', 'ruta': 'assets/videos/CapsulasEmbalador/Solicitudcierre.webm'},
