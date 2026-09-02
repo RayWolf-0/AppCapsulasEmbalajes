@@ -1,0 +1,336 @@
+/* ==========================================================================
+   DESIGN SYSTEM - CÁPSULAS EMBALAJE MAMUT
+   Ultra-fast, responsive, modern with Gold & Carbon palette
+   ========================================================================== */
+
+/* Local Fonts - 100% Offline Support */
+@font-face {
+  font-family: 'Roboto';
+  src: url('/assets/fonts/Roboto-Variable.ttf') format('truetype-variations'),
+       url('/assets/fonts/Roboto-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/assets/fonts/Roboto-Italic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/assets/fonts/NotoSans-Variable.ttf') format('truetype-variations'),
+       url('/assets/fonts/NotoSans-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/assets/fonts/NotoSans-Italic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* Brand Colors */
+  --primary-gold: #D9A542;
+  --primary-gold-hover: #E5B453;
+  --primary-gold-active: #C28E2E;
+  --primary-gold-light: rgba(217, 165, 66, 0.15);
+  --primary-gold-glow: rgba(217, 165, 66, 0.35);
+  
+  --carbon-900: #0D0D0E;
+  --carbon-800: #141416;
+  --carbon-700: #1C1C1E;
+  --carbon-600: #2C2C2E;
+  --carbon-500: #3A3A3C;
+  --carbon-400: #48484A;
+  --carbon-300: #636366;
+  --carbon-200: #8E8E93;
+  --carbon-100: #AEAEB2;
+
+  /* Typography - Works offline via local Roboto/Noto Sans */
+  --font-heading: 'Outfit', 'Roboto', 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Roboto', 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+}
+
+/* Light Theme Variables */
+:root, [data-theme="light"] {
+  --bg-app: #F5F6F9;
+  --bg-surface: #FFFFFF;
+  --bg-surface-secondary: #EBECEF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8F9FA;
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  --border-subtle: #E2E4E9;
+  --border-strong: #CDD0D8;
+  --border-accent: rgba(217, 165, 66, 0.5);
+
+  --text-primary: #18191B;
+  --text-secondary: #585A62;
+  --text-muted: #8B8E98;
+  --text-on-gold: #141416;
+
+  --nav-bg: #1C1C1E;
+  --nav-text: #FFFFFF;
+  --nav-border: #2C2C2E;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+  --shadow-gold: 0 4px 20px rgba(217, 165, 66, 0.25);
+}
+
+/* Dark Theme Variables */
+[data-theme="dark"] {
+  --bg-app: #0F0F11;
+  --bg-surface: #171719;
+  --bg-surface-secondary: #1F1F23;
+  --bg-card: #1C1C1F;
+  --bg-card-hover: #26262B;
+  --bg-glass: rgba(23, 23, 25, 0.85);
+  --border-subtle: #2C2C30;
+  --border-strong: #3D3D42;
+  --border-accent: rgba(217, 165, 66, 0.4);
+
+  --text-primary: #F4F4F6;
+  --text-secondary: #A6A6B0;
+  --text-muted: #6E6E78;
+  --text-on-gold: #141416;
+
+  --nav-bg: #141416;
+  --nav-text: #F4F4F6;
+  --nav-border: #242428;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.6);
+  --shadow-gold: 0 4px 24px rgba(217, 165, 66, 0.2);
+}
+
+/* Base Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-app);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--carbon-400);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-gold);
+}
+
+/* Global Buttons */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  transition: all var(--transition-fast);
+}
+
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid var(--primary-gold);
+  outline-offset: 2px;
+}
+
+/* Primary Button with Golden Mamut Style */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, var(--primary-gold) 0%, #C99636 100%);
+  color: var(--text-on-gold);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-md);
+  border: 2px solid #1C1C1E;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-gold-hover) 0%, var(--primary-gold) 100%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--bg-surface-secondary);
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--primary-gold);
+  color: var(--primary-gold);
+  transform: translateY(-1px);
+}
+
+/* Ghost Button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.btn-ghost:hover {
+  color: var(--primary-gold);
+  background: var(--primary-gold-light);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+.badge-gold {
+  background: var(--primary-gold-light);
+  color: var(--primary-gold);
+  border: 1px solid var(--border-accent);
+}
+
+.badge-dark {
+  background: var(--carbon-700);
+  color: #FFFFFF;
+}
+
+/* Layout Utilities */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px var(--primary-gold-glow);
+  }
+  50% {
+    box-shadow: 0 0 30px var(--primary-gold-glow);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.35s var(--transition-smooth) forwards;
+}

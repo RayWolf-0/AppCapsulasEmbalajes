@@ -1,0 +1,58 @@
+.doc-viewer-screen {
+  padding-top: 1.25rem;
+  padding-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.doc-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.doc-back-btn {
+  padding: 0.45rem 0.85rem;
+  font-size: 0.85rem;
+}
+
+.doc-switcher-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.doc-pill-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.doc-pill-tab:hover {
+  border-color: var(--primary-gold);
+  color: var(--primary-gold);
+}
+
+.doc-pill-tab.active {
+  background: var(--primary-gold);
+  color: #141416;
+  border-color: var(--primary-gold);
+}
+
+@media (max-width: 640px) {
+  .doc-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
