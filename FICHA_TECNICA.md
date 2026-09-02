@@ -517,7 +517,7 @@ Para certificar que la plataforma opere sin interrupciones en la fábrica sin co
 
 ### 6.1 Archivos Base y de Configuración
 
-1. **`index.html`:** Plantilla maestra del navegador. Define el contenedor raíz `<div id="root"></div>`, metaetiquetas PWA/móviles, enlace a `/manifest.json` e ícono corporativo `/assets/images/mamut.png`.
+1. **`index.html`:** Plantilla maestra del navegador. Define el contenedor raíz `<div id="root"></div>`, metaetiquetas PWA/móviles, enlace a `/manifest.json` e ícono corporativo `/Capsulas/assets/images/mamut.png`.
 2. **`public/manifest.json`:** Manifiesto de la aplicación para soporte de visualización en pantalla completa y modo standalone sin marcos de navegador.
 3. **`src/main.jsx`:** Punto de entrada JavaScript que inicializa React 19 mediante `createRoot`, envuelve la aplicación en el proveedor de tema `<ThemeProvider>` y monta `<App />`.
 4. **`src/App.jsx`:** Orquestador principal de estado y navegación de la plataforma. Controla la pantalla activa (`home`, `menu`, `capsules_list`, `player`, `doc_viewer`), el rol/categoría seleccionado, la cápsula en reproducción y el modal de salida.

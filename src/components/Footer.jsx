@@ -8,7 +8,7 @@ export const Footer = () => {
     <footer className="app-footer">
       <div className="footer-content">
         <div className="footer-brand-info">
-          <img src="/assets/images/mamut.png" alt="Mamut" className="footer-logo" />
+          <img src="/Capsulas/assets/images/mamut.png" alt="Mamut" className="footer-logo" />
           <span className="footer-text">
             © {currentYear} Mamut. Todos los derechos reservados.
           </span>

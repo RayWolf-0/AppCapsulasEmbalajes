@@ -31,7 +31,7 @@ export const Navbar = ({
           ) : (
             <div className="nav-brand" onClick={() => onNavigate('home')}>
               <img 
-                src="/assets/images/mamut.png" 
+                src="/Capsulas/assets/images/mamut.png" 
                 alt="Mamut Logo" 
                 className="nav-brand-logo" 
               />
