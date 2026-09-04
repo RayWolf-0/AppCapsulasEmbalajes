@@ -31,7 +31,12 @@ export const Navbar = ({
           ) : (
             <div className="nav-brand" onClick={() => onNavigate('home')}>
               <img 
-                src="/Capsulas/assets/images/mamut.png" 
+                src="/assets/images/mamut.png" 
+                onError={(e) => {
+                  if (!e.target.src.includes('/Capsulas/')) {
+                    e.target.src = '/Capsulas/assets/images/mamut.png';
+                  }
+                }}
                 alt="Mamut Logo" 
                 className="nav-brand-logo" 
               />

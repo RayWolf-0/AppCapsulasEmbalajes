@@ -10,7 +10,12 @@ export const HomeScreen = ({ onNavigate, onOpenExitModal }) => {
         <div className="home-logo-wrapper">
           <div className="home-logo-glow" />
           <img 
-            src="/Capsulas/assets/images/mamut.png" 
+            src="/assets/images/mamut.png" 
+            onError={(e) => {
+              if (!e.target.src.includes('/Capsulas/')) {
+                e.target.src = '/Capsulas/assets/images/mamut.png';
+              }
+            }}
             alt="Logo Mamut" 
             className="home-logo-img" 
           />

@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/Capsulas/assets/images/mamut.png" />
+    <link rel="icon" type="image/png" href="/assets/images/mamut.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#1C1C1E" />
     <meta name="description" content="Plataforma interactiva de capacitación y cápsulas de video para procesos de embalaje Mamut." />
@@ -11,10 +11,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="manifest" href="/manifest.json" />
     <title>Cápsulas Embalaje | Mamut</title>
-    <!-- Google Fonts: Outfit & Roboto (con fallback local offline 100% garantizado) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Fuentes Locales 100% Offline (Cero peticiones externas para carga inmediata en tablets) -->
+    <link rel="preload" href="/assets/fonts/Outfit-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/Roboto-Variable.ttf" as="font" type="font/ttf" crossorigin />
   </head>
   <body>
     <div id="root"></div>

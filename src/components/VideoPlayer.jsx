@@ -205,6 +205,7 @@ export const VideoPlayer = ({ src, title, autoPlay = true, onEnded }) => {
       <video
         ref={videoRef}
         src={src}
+        preload="metadata"
         className="video-element"
         onClick={togglePlay}
         onLoadedMetadata={handleLoadedMetadata}
